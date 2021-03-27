@@ -37,6 +37,11 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|min:5',
+            'nip'=>'required',
+            'address'=>'required'
+        ]);
         $customer = new Customer();
         $customer->name=$request->name;
         $customer->address=$request->address;
@@ -54,7 +59,8 @@ class CustomersController extends Controller
      */
     public function show($id) //sluzy do tego zeby pokazac palny resource
     {
-        //
+        $customer=Customer::with('invoices')->where('id',$id)->firstOrFail();
+        return view('customers.single',compact('customer'));
     }
 
     /**

@@ -38,7 +38,7 @@
                 @foreach($customers as $customer)
                     <tr>
                         <th scope="row">{{$customer->id}}</th>
-                        <td>{{$customer->name}}</td>
+                        <td><a href="{{route('customers.show',['klienci'=>$customer->id] ) }}">{{$customer->name}}</a> </td>
                         <td>{{$customer->address}}</td>
                         <td>{{$customer->nip}}</td>
                         <td><a href="{{route('customers.edit',['klienci'=>$customer->id] ) }}" class="btn btn-outline-primary">Edit</a> </td>
@@ -46,7 +46,7 @@
                         <td><form method="POST" action="{{ route('customers.destroy',['klienci'=>$customer->id]) }}">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-outline-danger">Usuń</button>
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
                         </form></td>
                         <!-- <td><a href="{{route('customers.destroy',['klienci'=>$customer->id] ) }}" class="btn btn-outline-danger">Delete</a> </td> -->
                     </tr>
